@@ -1,10 +1,9 @@
 var models = require('../models/models.js');
-// parte nueva ejeccicio P2P modulo 7
+// parte nueva ejericio P2P modulo 7
 var title = "Quiz";
 exports.init = function (req,res){
 	 var num_registros= models.registros;
 	 res.render('index', { title: title, num_registros:num_registros });
-	 console.log('hay registros'+num_registros);
 }
 // fin
 //autoload -factoriza el còdigo di la rutaa incluye :quizId
