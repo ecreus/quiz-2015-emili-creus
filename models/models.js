@@ -38,16 +38,36 @@ var Quiz = sequelize.import(path.join(__dirname,'quiz'));
 
 exports.Quiz=Quiz;
 
+// p2p modulo 7
+
+var registros=0;
+
 // sequelize.sync() crea e iniciliza tabla de preguntas DB
 
-sequelize.sync().success(function(){
-	// sucsess(..) ejecuta el manejador una vez creada la tabla
-	Quiz.count().success(function(count){
+sequelize.sync().then(function(){
+	// then(..) ejecuta el manejador una vez creada la tabla
+	Quiz.count().then(function(count){
 		if (count === 0){
+			// p2p modulo 7
+                        exports.registros=registros
+                        // fin
+
 			Quiz.create({ pregunta:'Capital de Italia',
 			respuesta:'Roma'
+				   });
+			Quiz.create({ pregunta:'Capital de Portugal',
+			respuesta:'Lisboa'
+				   });
+			Quiz.create({ pregunta:'Capital de Francia',
+			respuesta:'Paris'
 				   })
-			.success(function(){console.log('Base de datos inicializada')});
+			.then(function(){console.log('Base de datos inicializada')});
+		//  p2p modulo 7
+		}else{
+
+			exports.registros=count;
+			console.log("registros="+registros);
+		// fin
 		};
 	});
 });
