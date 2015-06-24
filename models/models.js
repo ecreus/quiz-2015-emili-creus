@@ -49,24 +49,26 @@ sequelize.sync().then(function(){
 	Quiz.count().then(function(count){
 		if (count === 0){
 			// p2p modulo 7
-                        exports.registros=registros
+                        //exports.num_registros=num_registros
                         // fin
 
 			Quiz.create({ pregunta:'Capital de Italia',
-			respuesta:'Roma'
+			respuesta:'Roma', tema:'humanidades'
 				   });
 			Quiz.create({ pregunta:'Capital de Portugal',
-			respuesta:'Lisboa'
+			respuesta:'Lisboa', tema:'humanidades'
 				   });
 			Quiz.create({ pregunta:'Capital de Francia',
-			respuesta:'Paris'
+			respuesta:'Paris', tema:'humanidades'
 				   })
 			.then(function(){console.log('Base de datos inicializada')});
+			exports.registros=count;
+                        console.log(" Numero de registros en la base"+count); 
 		//  p2p modulo 7
 		}else{
 
 			exports.registros=count;
-			console.log("registros="+registros);
+			console.log("registros="+count);
 		// fin
 		};
 	});

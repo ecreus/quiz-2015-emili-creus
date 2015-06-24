@@ -21,12 +21,22 @@
 		<span><a href="author"> Cr&eacute;ditos</a></span>
 	</nav>
 	<section class="main" id="s1">
-		<%-body%>
+		<% if(errors.length) { %>
+                <span id='ErrorMsgs'>
+                        Corregir errores:<br/>
+                        <% for (var i in errors) {%>
+                        <span> <%=errors[i].message %> </span><br/>
+                        <% } %>
+                </span>
+
+        <% } %>	
+	
+	<div>	<%-body%> </div>
 	</section>
 	<footer class="main" id="f1">
 		<a href="http://es.wikipedia.org/wiki/Quiz"> &iquest;Que es un Quiz? </a>
 		<br>
-		<a href="https://github.com/ecreus/quiz-2015-emili-creus"> Ejercicio M&oacute;dulo 6 en HITHUB </a>
+		<a href="https://github.com/ecreus/quiz-2015-emili-creus"> Ejercicio M&oacute;dulo 8 en HITHUB </a>
 	</footer>
 </div>
 </body>

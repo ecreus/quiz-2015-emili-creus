@@ -1,0 +1,54 @@
+<label for="preg" class="rem">Pregunta:</label>
+<input type="text" id="preg" name="quiz[pregunta]" value="<%= quiz.pregunta %>"/> <p>
+<label for="resp" class="rem">Respuesta:</label>
+<input type="text" id="resp" name="quiz[respuesta]" value="<%= quiz.respuesta %>"/><p>
+<label for="tema" class="rem">Tema:</label>
+<!-- El tema  por defecto dependerá del que encuentre en la base de datos  -->
+<% if (quiz.tema==="humanidades") { %>
+<select name="quiz[tema]">
+  <option value="otro" >Otro</option>
+  <option value="humanidades" selected>humanidades</option>
+  <option value="ocio">ocio</option>
+  <option value="ciencia">ciencia</option>
+  <option value="tecnologia">tecnologia</option>
+</select>
+<% } else if (quiz.tema==="ocio") { %>
+<select name="quiz[tema]">
+  <option value="otro">otro</option>
+  <option value="humanidades">humanidades</option>
+  <option value="ocio" selected>ocio</option>
+  <option value="ciencia">ciencia</option>
+  <option value="tecnologia">tecnologia</option>
+</select>
+<% } else if (quiz.tema==="ciencia") { %>
+<select name="quiz[tema]">
+  <option value="otro">otro</option>
+  <option value="humanidades">humanidades</option>
+  <option value="ocio">ocio</option>
+  <option value="ciencia" selected>ciencia</option>
+  <option value="tecnologia">tecnologia</option>
+</select>
+<% } else if (quiz.tema==="tecnologia") { %>
+<select name="quiz[tema]">
+  <option value="otro">otro</option>
+  <option value="humanidades">humanidades</option>
+  <option value="ocio">ocio</option>
+  <option value="ciencia">ciencia</option>
+  <option value="tecnologia" selected>tecnología</option>
+</select>
+<% } else { %>
+<select name="quiz[tema]">
+  <option value="otro" selected>otro</option>
+  <option value="humanidades">humanidades</option>
+  <option value="ocio">ocio</option>
+  <option value="ciencia">ciencia</option>
+  <option value="tecnologia">tecnologia</option>
+</select>
+<% } %>
+</p>
+<p>
+
+
+<a href="/quizes"><button type="button">Cancelar</button></a>
+<input type="submit" value="Salvar">
+</p>
