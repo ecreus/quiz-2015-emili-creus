@@ -7,6 +7,7 @@ var bodyParser = require('body-parser');
 //var methodOverride = require('method-override');
 var partials = require('express-partials');
 var methodOverride = require('method-override');
+var session=require('express-session');
 
 var routes = require('./routes/index');
 //var users = require('./routes/users');
@@ -23,9 +24,29 @@ app.use(logger('dev'));
 app.use(bodyParser.json());
 //app.use(bodyParser.urlencoded({extended:false}));
 app.use(bodyParser.urlencoded());
-app.use(cookieParser());
+app.use(cookieParser('quiz miradax 2015'));
+app.use(session({
+	secret: 'nolose',
+	resave: true,
+	saveUninitialized: true
+}
+));
 app.use(methodOverride('_method'));
 app.use(express.static(path.join(__dirname, 'public')));
+
+// Helpers dinàmicos
+app.use(function(req,res,next){
+	// guardar path en session.redir para despues de login
+	if (!req.path.match(/\/login |\/logout/)){
+		req.session.redir= req.path;
+	}
+	// Hacer visible req.session en las vistas
+	res.locals.session=req.session;
+	next();
+});
+
+
+
 
 app.use('/', routes);
 //app.use('/users', users);

@@ -7,11 +7,12 @@ exports.init = function (req,res){
 	 res.render('index', { title: title, num_registros: num_registros,errors:[] });
 }
 // fin
-//autoload -factoriza el còdigo di la rutaa incluye :quizId
+//autoload -factoriza el còdigo e la ruta incluye :quizId
 exports.load = function (req,res,next,quizId) {
-
-	models.Quiz.find(quizId).then(
-	   function(quiz) {
+	models.Quiz.find({
+	       where:{id:Number(quizId)},
+		include:[{model:models.Comment}]
+	}).then(function(quiz) {
 		if (quiz){
 		 req.quiz=quiz;
 		 next();

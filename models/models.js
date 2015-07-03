@@ -34,9 +34,18 @@ var sequelize = new Sequelize( DB_name,user,pwd,
 
 var Quiz = sequelize.import(path.join(__dirname,'quiz'));
 
+// Importar definicion de la tabla comment
+var comment_path = path.join(__dirname,'comment');
+var Comment = sequelize.import(comment_path);
+Comment.belongsTo(Quiz);
+Quiz.hasMany(Comment);
+
+
 // Exportar definicion de la tabla quiz
 
 exports.Quiz=Quiz;
+exports.Comment=Comment;
+
 
 // p2p modulo 7
 
