@@ -34,6 +34,29 @@ app.use(session({
 app.use(methodOverride('_method'));
 app.use(express.static(path.join(__dirname, 'public')));
 
+//P2P Modulo 9
+// Función auto-logout
+app.use(function(req, res, next) {
+    if(req.session.user) {
+        var horaActual = new Date().getTime();
+        var ultimoRequest = req.session.ultimoRequest || horaActual;
+
+        if(horaActual - ultimoRequest > (2 * 60 * 1000)) {
+            delete req.session.user;
+            delete req.session.ultimoRequest;
+            res.redirect('/');
+        }
+        else {
+            req.session.ultimoRequest = horaActual;
+            next();
+        }
+    }
+    else {
+        next();
+    }
+});
+
+
 // Helpers dinàmicos
 app.use(function(req,res,next){
 	// guardar path en session.redir para despues de login
